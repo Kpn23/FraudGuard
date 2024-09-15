@@ -111,9 +111,6 @@ def preprocess_data(df):
         df_temp[colums_without_isfraud]
     )
     df_encoded[colums_without_isfraud] = df_temp[colums_without_isfraud]
-
-    print("LabelEncoder and StandardScaler are applied!\n")
-    df_encoded.info()
     return df_encoded
 
 
