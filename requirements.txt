@@ -1,0 +1,9 @@
+category_encoders==2.6.3
+customtkinter==5.2.2
+matplotlib==3.9.2
+numpy==2.1.1
+pandas==2.2.2
+pyodbc==5.1.0
+python-dotenv==1.0.1
+scikit_learn==1.5.2
+seaborn==0.13.2
