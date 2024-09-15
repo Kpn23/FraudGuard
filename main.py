@@ -298,7 +298,7 @@ class MainSystem(ctk.CTk):
         self.preprocessing_text.yview(tk.END)
 
     def preprocessing_button3(self):
-        self.df_fraud, self.df_not_fraud = balance_class(self.df_encoded)
+        self.df_fraud, self.df_not_fraud, percentage = balance_class(self.df_encoded)
 
         df_balance = pd.concat(
             [self.df_not_fraud, self.df_encoded[self.df_encoded.is_fraud == 1]],
@@ -313,6 +313,12 @@ class MainSystem(ctk.CTk):
         ax.set_title("Count of Fraudulent vs Non-Fraudulent Transactions")
         ax.set_xticklabels(["negative", "positive"], rotation=0)
         self.canvas.draw()
+
+        self.preprocessing_text.insert(tk.END, "Undersample is applied!!!\n")
+        self.preprocessing_text.insert(
+            tk.END, f"Percentage of fraud record in dataset: {percentage}%\n"
+        )
+        self.preprocessing_text.yview(tk.END)
 
     # def cloud_button1(self):
     #     create_table(

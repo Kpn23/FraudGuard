@@ -122,9 +122,7 @@ def balance_class(df):
     # Check distribution of label data
     fraud_row = df[df.is_fraud == 1].shape[0]
     not_fraud_row = df[df.is_fraud == 0].shape[0]
-    print(
-        f"Percentage of fraud record in dataset: {fraud_row/(fraud_row+not_fraud_row)*100}%"
-    )
+    fraud_target_percentage = fraud_row / (fraud_row + not_fraud_row) * 100
     # undersampling
     not_fraud = df[df.is_fraud == 0].sample(fraud_row, random_state=42)
     fraud = df[df.is_fraud == 1]
@@ -173,7 +171,4 @@ def balance_class(df):
     # ax.legend()
 
     # plt.show()
-    print("Undersample is applied!!!\n")
-    fraud.info()
-    not_fraud.info()
-    return fraud, not_fraud
+    return fraud, not_fraud, fraud_target_percentage
