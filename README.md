@@ -3,6 +3,42 @@
 ### Project Overview 🎯
 Welcome to the FraudGuard project! Our mission is to detect fraudulent credit card transactions using cutting-edge machine learning techniques. Join us on this exciting journey as we uncover the secrets behind suspicious activities and keep your money safe!
 
+## User Interface Overview 🌐
+The FraudGuard application features a user-friendly interface designed to facilitate the entire process of fraud detection. Below are the key components of the interface:
+
+### Data Preprocessing Tab 🧹
+<div style="flex: 50%; padding: 10px; text-align: center;">
+    <img src="user_interface_sample/preprocessing_tab.png" width="520" height="400" alt="Image description">
+  </div>
+
+- **Objective**: Understand the distribution of fraudulent and non-fraudulent records.
+- **Functionality**: Visualize the number of "not_fraud" and "fraud" records through a graph after undersampling. This helps in assessing the balance of the dataset before proceeding with further analysis.
+
+
+### Feature Engineering Tab 🔍
+<div style="flex: 50%; padding: 10px; text-align: center;">
+    <img src="user_interface_sample/feature_engineering_tab.png" width="520" height="400" alt="Image description">
+  </div>
+  
+- **Objective**: Select relevant features for model training.
+- **Functionality**: Users can choose features from a list of checkboxes. Once selected, the application displays the correlation between these features on a graph, allowing users to make informed decisions about which features to include in the model.
+
+### Model Training Tab 🏋️‍♀️
+<div style="flex: 50%; padding: 10px; text-align: center;">
+    <img src="user_interface_sample/model_training_tab.png" width="520" height="400" alt="Image description">
+  </div>
+
+- **Objective**: Prepare and train the model.
+- **Functionality**: The data is split into three groups: training, validation, and testing. The application combines the "not_fraud" and "fraud" datasets to form the final three groups. It separates the target column from the dataset and trains the model using logistic regression, ensuring a robust training process.
+
+### Model Validation and Testing Tab 🧪
+<div style="flex: 50%; padding: 10px; text-align: center;">
+    <img src="user_interface_sample/testing_tab.png" width="520" height="400" alt="Image description">
+  </div>
+
+- **Objective**: Validate and test the trained model.
+- **Functionality**: The application displays a confusion matrix using a heatmap, providing a visual representation of the model's performance. Additionally, it generates a classification report in a textbox, summarizing the model's accuracy and effectiveness.
+
 ## Project Structure
 ```bash
 FraudDetection/
@@ -67,13 +103,5 @@ your_csv_directory= "data/combine.csv"
 python main.py
 ```
 
-6. **Data Preprocessing**: Use the buttons in the application to perform data preprocessing tasks such as finding missing values, preprocessing data, and balancing classes.
-
-7. **Feature Engineering**: Select features for model training and visualize correlations.
-
-8. **Model Training**: Split the data, prepare it for training, and train the logistic regression model.
-
-9. **Model Evaluation**: Validate the model on training and validation datasets, and visualize the confusion matrix.
-
 ## Dataset Source 📊
-This project utilizes the **Credit Card Transactions Fraud Detection Dataset** available on [Kaggle](https://www.kaggle.com/datasets/kartik2112/fraud-detection). This rich dataset provides the necessary information to train our models effectively.
+This project utilizes the Credit Card Transactions Fraud Detection Dataset, which is available on [Kaggle](https://www.kaggle.com/datasets/kartik2112/fraud-detection).
