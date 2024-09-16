@@ -3,10 +3,6 @@
 ## Project Overview 🎯
 Welcome to the **FraudGuard** project! Our mission is to detect fraudulent credit card transactions using cutting-edge machine learning techniques. Join us on this exciting journey as we uncover the secrets behind suspicious activities and keep your money safe!
 
-FraudGuard is a comprehensive application designed to tackle the problem of credit card fraud detection. By leveraging advanced data preprocessing, feature engineering, and machine learning algorithms, we aim to build a robust model that can accurately identify fraudulent transactions in real-time.
-
-The project follows a structured approach, starting from data exploration and cleaning, to feature selection and model training, and finally, model evaluation and deployment. Each step is carefully designed to ensure the highest possible accuracy and efficiency in fraud detection.
-
 ## Key Features 🔑
 
 - **Efficient Data Preprocessing**: 
