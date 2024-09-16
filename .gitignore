@@ -2,3 +2,5 @@
 .env
 
 data/combine.csv
+data/fraudTest.csv
+data/fraudTrain.csv
