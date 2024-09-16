@@ -126,3 +126,33 @@ python main.py
 
 ## Dataset Source 📊
 This project utilizes the Credit Card Transactions Fraud Detection Dataset, which is available on [Kaggle](https://www.kaggle.com/datasets/kartik2112/fraud-detection).
+
+### Dataset Schema 
+
+The dataset used in the FraudGuard project contains **2,593,350 entries** with a total of **23 columns**. Each column is detailed below:
+
+| Column Name                  | Data Type | Description                                         |
+|------------------------------|-----------|-----------------------------------------------------|
+| **id**                       | int64     | Unique identifier for each transaction              |
+| **trans_date_trans_time**   | object    | Date and time of the transaction                    |
+| **cc_num**                  | int64     | Credit card number associated with the transaction   |
+| **merchant**                 | object    | Name of the merchant where the transaction occurred  |
+| **category**                 | object    | Category of the merchant (e.g., grocery, retail)    |
+| **amt**                      | float64   | Amount of the transaction                            |
+| **first**                    | object    | First name of the cardholder                        |
+| **last**                     | object    | Last name of the cardholder                         |
+| **gender**                   | object    | Gender of the cardholder                            |
+| **street**                   | object    | Street address of the cardholder                    |
+| **city**                     | object    | City where the cardholder resides                   |
+| **state**                    | object    | State where the cardholder resides                  |
+| **zip**                      | int64     | Zip code of the cardholder's address                |
+| **lat**                      | float64   | Latitude of the cardholder's location               |
+| **long**                     | float64   | Longitude of the cardholder's location              |
+| **city_pop**                 | int64     | Population of the city where the cardholder resides  |
+| **job**                      | object    | Job title of the cardholder                         |
+| **dob**                      | object    | Date of birth of the cardholder                     |
+| **trans_num**                | object    | Transaction number                                   |
+| **unix_time**               | int64     | Unix timestamp of the transaction                    |
+| **merch_lat**                | float64   | Latitude of the merchant's location                 |
+| **merch_long**              | float64   | Longitude of the merchant's location                |
+| **is_fraud**                | int64     | Indicator of whether the transaction is fraudulent (1 for yes, 0 for no) |
