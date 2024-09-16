@@ -1,21 +1,28 @@
 # 🚨 FraudGuard: Credit Card Fraud Detection 🚨
 
-### Project Overview 🎯
-Welcome to the FraudGuard project! Our mission is to detect fraudulent credit card transactions using cutting-edge machine learning techniques. Join us on this exciting journey as we uncover the secrets behind suspicious activities and keep your money safe!
+## Project Overview 🎯
+Welcome to the **FraudGuard** project! Our mission is to detect fraudulent credit card transactions using cutting-edge machine learning techniques. Join us on this exciting journey as we uncover the secrets behind suspicious activities and keep your money safe!
 
 FraudGuard is a comprehensive application designed to tackle the problem of credit card fraud detection. By leveraging advanced data preprocessing, feature engineering, and machine learning algorithms, we aim to build a robust model that can accurately identify fraudulent transactions in real-time.
 
 The project follows a structured approach, starting from data exploration and cleaning, to feature selection and model training, and finally, model evaluation and deployment. Each step is carefully designed to ensure the highest possible accuracy and efficiency in fraud detection.
 
-### Key Features 🔑
-**Efficient data preprocessing**: The application handles missing values, class imbalance, and feature encoding to prepare the data for modeling.
-Intuitive feature selection: Users can easily select relevant features for model training based on their domain knowledge and the correlation between features.
+## Key Features 🔑
 
-**Robust model training**: The project employs logistic regression, a widely used algorithm for binary classification tasks, to train the fraud detection model.
+- **Efficient Data Preprocessing**: 
+  - The application handles missing values, class imbalance, and feature encoding to prepare the data for modeling.
 
-**Comprehensive model evaluation**: The application provides detailed performance metrics, including confusion matrix and classification report, to assess the model's effectiveness.
+- **Intuitive Feature Selection**: 
+  - Users can easily select relevant features for model training based on their domain knowledge and the correlation between features.
 
-**User-friendly interface**: The project features a clean and interactive graphical user interface (GUI) built using the CustomTkinter library, making it accessible to users with varying technical backgrounds.
+- **Robust Model Training**: 
+  - The project employs logistic regression, a widely used algorithm for binary classification tasks, to train the fraud detection model.
+
+- **Comprehensive Model Evaluation**: 
+  - The application provides detailed performance metrics, including confusion matrix and classification report, to assess the model's effectiveness.
+
+- **User-Friendly Interface**: 
+  - The project features a clean and interactive graphical user interface (GUI) built using the CustomTkinter library, making it accessible to users with varying technical backgrounds.
 
 ## User Interface Overview 🌐
 The FraudGuard application features a user-friendly interface designed to facilitate the entire process of fraud detection. Below are the key components of the interface:
