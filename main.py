@@ -184,8 +184,8 @@ class MainSystem(ctk.CTk):
     def create_element_training(self, parent):
         # Create element for each task
         tasks = [
-            "Split Data",
-            "Combine Data",
+            "Split Data (Training, Validation, Testing)",
+            "Combine Data (balanced class datasets)",
             "Prepare x/y data",
             "Train Model",
         ]
