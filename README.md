@@ -120,6 +120,28 @@ your_csv_directory= "data/combine.csv"
 python main.py
 ```
 
+## Cloning the Repository 🚀
+
+To clone the **FraudGuard** project to your local machine, follow these steps:
+1. **Open Your Terminal**:
+   - On Windows, you can use Git Bash or Command Prompt.
+   - On macOS, open the Terminal application.
+
+2. **Navigate to Your Desired Directory**:
+   - Use the `cd` command to change to the directory where you want to clone the repository. For example:
+     ```bash
+     cd path/to/your/directory
+     ```
+
+3. **Run the Clone Command**:
+   - Type the following command and paste the URL you copied from GitHub:
+     ```bash
+     git clone https://github.com/Kpn23/FraudGuard.git
+     ```
+
+4. **Press Enter**:
+   - This will create a local copy of the repository on your machine, including all files, branches, and commit history.
+
 ## Dataset Source 📊
 This project utilizes the Credit Card Transactions Fraud Detection Dataset, which is available on [Kaggle](https://www.kaggle.com/datasets/kartik2112/fraud-detection).
 
