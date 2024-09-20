@@ -3,6 +3,11 @@
 ## Project Overview 🎯
 Welcome to the **FraudGuard** project! Our mission is to detect fraudulent credit card transactions using cutting-edge machine learning techniques. Join us on this exciting journey as we uncover the secrets behind suspicious activities and keep your money safe!
 
+## Flowchart of the System
+<img src="user_interface_sample/flowchart.png" width="520" height="300" alt="Image description">
+
+The flowchart illustrates the architecture and workflow of the FraudGuard credit card fraud detection system. It outlines the key stages, including data preprocessing, feature selection, model training, evaluation, and user interaction. Each component is designed to ensure a seamless experience for users while effectively detecting fraudulent transactions through advanced machine learning techniques.
+
 ## Key Features 🔑
 
 - **Efficient Data Preprocessing**: 
