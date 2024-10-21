@@ -2,18 +2,15 @@ import customtkinter as ctk
 import os
 from dotenv import load_dotenv
 import tkinter as tk
+from tkinter import filedialog
 from tkinter.scrolledtext import ScrolledText
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from joblib import dump, load
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from src.data_preprocessing import find_missing_value, balance_class, preprocess_data
-from util.azure_connection import (
-    connect_to_azure,
-    create_table,
-    select_table_for_diff_model,
-)
 from src.feature_engineering import feature_engineering
 from src.model_training import split_data, concat_data, prepare_data, train_model
 from src.model_evaluation import evaluate_model
@@ -118,7 +115,10 @@ class MainSystem(ctk.CTk):
     def create_element_feature_engineering(self, parent):
         # Create a frame for the buttons
         button_frame3 = ctk.CTkFrame(parent)
-        button_frame3.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
+        button_frame3.grid(row=2, column=0, padx=10, pady=10, sticky="nsew")
+
+        button_frame2 = ctk.CTkFrame(parent)
+        button_frame2.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
 
         # Create a frame for the figure
         figure_frame3 = ctk.CTkFrame(parent)
@@ -127,7 +127,7 @@ class MainSystem(ctk.CTk):
         # Create a frame for the text widget
         checkbox_frame3 = ctk.CTkScrollableFrame(parent)
         checkbox_frame3.grid(
-            row=1, column=1, padx=10, pady=10, sticky="nsew"
+            row=1, column=1, padx=10, pady=10, rowspan=2, sticky="nsew"
         )  # Bottom left
 
         # Configure grid weights to make frames resize properly
@@ -135,14 +135,6 @@ class MainSystem(ctk.CTk):
         parent.grid_rowconfigure(1, weight=0)
         parent.grid_columnconfigure(0, weight=1)
         parent.grid_columnconfigure(1, weight=1)
-
-        # Create element for each task
-        tasks = ["Feature Engineering (Allow Selection)", "Plot correation heatmap"]
-        functions = [self.feature_engineering_button1, self.feature_engineering_button2]
-        # Add element to the parent frame
-        for index, task in enumerate(tasks):
-            button = ctk.CTkButton(button_frame3, text=task, command=functions[index])
-            button.pack(pady=10, padx=20, fill="x")
 
         self.select_all_var = ctk.StringVar(value="off")
         self.select_all_checkbox = ctk.CTkCheckBox(
@@ -181,25 +173,80 @@ class MainSystem(ctk.CTk):
         self.canvas3 = FigureCanvasTkAgg(self.figure3, master=figure_frame3)
         self.canvas3.get_tk_widget().pack(fill="both", expand=True)
 
-    def create_element_training(self, parent):
+        tasks_2 = ["Import Features", "Feature Engineering (Allow Selection)"]
+        functions_2 = [
+            self.feature_engineering_button3,
+            self.feature_engineering_button1,
+        ]
+
+        # Define colors for the second set
+        button_color_2 = "#4CAF50"  # Green color
+        button_hover_color_2 = "#45a049"  # Darker green
+        for index, task in enumerate(tasks_2):
+            button = ctk.CTkButton(
+                button_frame2,
+                text=task,
+                command=functions_2[index],
+                fg_color=button_color_2,
+                hover_color=button_hover_color_2,
+                text_color="white",
+            )
+            button.pack(pady=10, padx=20, fill="x")
+
         # Create element for each task
-        tasks = [
+        tasks = "Plot correation heatmap"
+        functions = self.feature_engineering_button2
+        # Add element to the parent frame
+        button = ctk.CTkButton(button_frame3, text=tasks, command=functions)
+        button.pack(pady=10, padx=20, fill="x")
+
+    def create_element_training(self, parent):
+        parent.grid_columnconfigure(0, weight=1)
+        button_frame1 = ctk.CTkFrame(parent)
+        button_frame1.grid(row=1, sticky="ew")  # sticky="ew" for full width
+
+        button_frame2 = ctk.CTkFrame(parent)
+        button_frame2.grid(row=2, sticky="ew")  # sticky="ew" for full width
+        # First set of tasks
+        tasks_1 = [
             "Split Data (Training, Validation, Testing)",
             "Combine Data (balanced class datasets)",
             "Prepare x/y data",
-            "Train Model",
         ]
-
-        functions = [
+        functions_1 = [
             self.training_button1,
             self.training_button2,
             self.training_button3,
+        ]
+
+        for index, task in enumerate(tasks_1):
+            button = ctk.CTkButton(button_frame1, text=task, command=functions_1[index])
+            button.pack(pady=10, padx=20, expand=True, fill="x")
+
+        # Second set of tasks
+        tasks_2 = [
+            "Import Model",
+            "Train Model",
+        ]
+        functions_2 = [
+            self.training_button5,
             self.training_button4,
         ]
-        # Add element to the parent frame
-        for index, task in enumerate(tasks):
-            button = ctk.CTkButton(parent, text=task, command=functions[index])
-            button.pack(pady=10, padx=20, fill="x")
+
+        # Define colors for the second set
+        button_color_2 = "#4CAF50"  # Green color
+        button_hover_color_2 = "#45a049"  # Darker green
+
+        for index, task in enumerate(tasks_2):
+            button = ctk.CTkButton(
+                button_frame2,
+                text=task,
+                command=functions_2[index],
+                fg_color=button_color_2,
+                hover_color=button_hover_color_2,
+                text_color="white",
+            )
+            button.pack(pady=10, padx=20, expand=True, fill="x")
 
     def create_element_validation(self, parent):
         # Create a frame for the buttons
@@ -262,8 +309,8 @@ class MainSystem(ctk.CTk):
         parent.grid_columnconfigure(1, weight=1)
 
         # Create element for each task
-        tasks = ["Final Evaluation"]
-        functions = [self.testing_button1]
+        tasks = ["Final Evaluation", "Save ML model"]
+        functions = [self.testing_button1, self.testing_button2]
         # Add element to the parent frame
         for index, task in enumerate(tasks):
             button = ctk.CTkButton(button_frame6, text=task, command=functions[index])
@@ -320,14 +367,6 @@ class MainSystem(ctk.CTk):
         )
         self.preprocessing_text.yview(tk.END)
 
-    # def cloud_button1(self):
-    #     create_table(
-    #         self.df_fraud, self.df_not_fraud, connect_to_azure(), "LogisticRegression"
-    #     )
-
-    # def cloud_button2(self):
-    #     self.cloud
-
     def feature_engineering_button1(self):
         features_list = [
             feature
@@ -367,6 +406,43 @@ class MainSystem(ctk.CTk):
         ax.tick_params(axis="y", labelsize=6)
         self.canvas3.draw()
 
+    def feature_engineering_button3(self):
+        # Open a file dialog to select the features file
+        features_file_path = filedialog.askopenfilename(
+            title="Select Features File",
+            filetypes=[("Text files", "*.txt"), ("All files", "*.*")],
+        )
+
+        if features_file_path:  # Check if a file was selected
+            try:
+                # Read the features from the selected file
+                with open(features_file_path, "r") as f:
+                    features_list = [
+                        line.strip() for line in f.readlines() if line.strip()
+                    ]
+
+                # Update the check_vars based on selected features
+                for feature in self.feature_header:
+                    if feature in features_list:
+                        index = self.feature_header.index(feature)
+                        self.check_vars[index].set(
+                            "on"
+                        )  # Set checkbox to 'on' if feature is selected
+                    else:
+                        index = self.feature_header.index(feature)
+                        self.check_vars[index].set(
+                            "off"
+                        )  # Set checkbox to 'off' if feature is not selected
+
+                # Update the feature engineering process with the selected features
+                self.df_fraud_FT, self.df_not_fraud_FT = feature_engineering(
+                    self.df_fraud, self.df_not_fraud, features_list, self.target
+                )
+                print(f"Features loaded successfully from {features_file_path}")
+
+            except Exception as e:
+                print(f"Error reading features file: {e}")
+
     def toggle_all(self):
         if self.select_all_var.get() == "on":
             for var in self.check_vars:
@@ -397,6 +473,21 @@ class MainSystem(ctk.CTk):
 
     def training_button4(self):
         self.logistic_regression_model = train_model(self.x_train, self.y_train)
+
+    def training_button5(self):
+        # Open a file dialog to select a model file
+        model_file_path = filedialog.askopenfilename(
+            title="Select ML Model File",
+            filetypes=[("Joblib files", "*.joblib"), ("All files", "*.*")],
+        )
+
+        if model_file_path:  # Check if a file was selected
+            try:
+                # Load the model using joblib
+                self.logistic_regression_model = load(model_file_path)
+                print(f"Model loaded successfully from {model_file_path}")
+            except Exception as e:
+                print(f"Error loading model: {e}")
 
     def validation_button1(self):
         tn, fp, fn, tp, report = evaluate_model(
@@ -479,6 +570,51 @@ class MainSystem(ctk.CTk):
         self.canvas6.draw()
 
         self.testing_text.insert(tk.END, report)
+        self.testing_text.yview(tk.END)
+
+    def testing_button2(self):
+        # Define the model directory and base filename
+        model_directory = "model"
+        base_filename = "logistic_regression_model.joblib"
+        features_filename = "selected_features.txt"
+
+        os.makedirs(model_directory, exist_ok=True)
+
+        # Create a unique model path
+        model_path = os.path.join(model_directory, base_filename)
+        counter = 1
+
+        while os.path.exists(model_path):
+            model_path = os.path.join(
+                model_directory, f"logistic_regression_model_{counter}.joblib"
+            )
+            counter += 1
+
+        # Save the model
+        dump(self.logistic_regression_model, model_path)
+
+        # Save the selected features
+        selected_features = [
+            feature
+            for feature, var in zip(self.feature_header, self.check_vars)
+            if var.get() == "on"
+        ]
+
+        features_path = os.path.join(model_directory, features_filename)
+        counter = 1
+        while os.path.exists(features_path):
+            features_path = os.path.join(
+                model_directory, f"selected_features{counter}.txt"
+            )
+            counter += 1
+        with open(features_path, "w") as f:
+            for feature in selected_features:
+                f.write(f"{feature}\n")
+
+        self.testing_text.insert(tk.END, f"Model saved as '{model_path}'\n")
+        self.testing_text.insert(
+            tk.END, f"Selected features saved as '{features_path}'\n"
+        )
         self.testing_text.yview(tk.END)
 
 

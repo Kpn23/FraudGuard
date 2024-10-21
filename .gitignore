@@ -4,3 +4,11 @@
 data/combine.csv
 data/fraudTest.csv
 data/fraudTrain.csv
+
+__pycache__
+
+myenv
+
+util copy
+
+
