@@ -129,7 +129,7 @@ touch .env
 
 5. **Assign CSV File Path**: Open the .env file and add the following line to assign the path of the combine.csv file to the your_csv_directory variable:
 ```text
-your_csv_directory= "data/combine.csv"
+your_csv_directory= ""
 ```
 
 6. **Run the Application**: Execute the main.py file to start the application:
