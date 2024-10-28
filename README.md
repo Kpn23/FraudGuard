@@ -109,7 +109,7 @@ FraudDetection/
 1. **Optional**: Create Virtual Environment:
 ```bash
 python -m venv myenv
-source <path to your folder>/p_FraudGuard/myenv/bin/activate
+source <path to your folder>/FraudGuard/myenv/bin/activate
 ```
 
 2. **Setup**: Ensure you have the required libraries installed. You can install them using pip:
